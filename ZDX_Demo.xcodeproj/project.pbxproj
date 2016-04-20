@@ -15,6 +15,12 @@
 		25A48BB51CC72F22002EDA80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A48BB31CC72F22002EDA80 /* LaunchScreen.storyboard */; };
 		25A48BC01CC72F22002EDA80 /* ZDX_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BBF1CC72F22002EDA80 /* ZDX_DemoTests.m */; };
 		25A48BCB1CC72F22002EDA80 /* ZDX_DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BCA1CC72F22002EDA80 /* ZDX_DemoUITests.m */; };
+		25A48BDA1CC72F4F002EDA80 /* ZDXMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BD91CC72F4F002EDA80 /* ZDXMoveView.m */; };
+		25A48BDD1CC72F57002EDA80 /* ZDXMoveAndScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BDC1CC72F57002EDA80 /* ZDXMoveAndScrollView.m */; };
+		25A48BE01CC72F6C002EDA80 /* ZDXPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BDF1CC72F6C002EDA80 /* ZDXPopupView.m */; };
+		25A48BE31CC72F7E002EDA80 /* ZDXLoopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BE21CC72F7E002EDA80 /* ZDXLoopScrollView.m */; };
+		25A48BE61CC732AD002EDA80 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BE51CC732AD002EDA80 /* DemoViewController.m */; };
+		25A48BE91CC745FB002EDA80 /* ZDXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A48BE81CC745FB002EDA80 /* ZDXPageControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,18 @@
 		25A48BC61CC72F22002EDA80 /* ZDX_DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZDX_DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A48BCA1CC72F22002EDA80 /* ZDX_DemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZDX_DemoUITests.m; sourceTree = "<group>"; };
 		25A48BCC1CC72F22002EDA80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25A48BD81CC72F4F002EDA80 /* ZDXMoveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXMoveView.h; sourceTree = "<group>"; };
+		25A48BD91CC72F4F002EDA80 /* ZDXMoveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXMoveView.m; sourceTree = "<group>"; };
+		25A48BDB1CC72F57002EDA80 /* ZDXMoveAndScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXMoveAndScrollView.h; sourceTree = "<group>"; };
+		25A48BDC1CC72F57002EDA80 /* ZDXMoveAndScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXMoveAndScrollView.m; sourceTree = "<group>"; };
+		25A48BDE1CC72F6C002EDA80 /* ZDXPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXPopupView.h; sourceTree = "<group>"; };
+		25A48BDF1CC72F6C002EDA80 /* ZDXPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXPopupView.m; sourceTree = "<group>"; };
+		25A48BE11CC72F7E002EDA80 /* ZDXLoopScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXLoopScrollView.h; sourceTree = "<group>"; };
+		25A48BE21CC72F7E002EDA80 /* ZDXLoopScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXLoopScrollView.m; sourceTree = "<group>"; };
+		25A48BE41CC732AD002EDA80 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		25A48BE51CC732AD002EDA80 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		25A48BE71CC745FB002EDA80 /* ZDXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXPageControl.h; sourceTree = "<group>"; };
+		25A48BE81CC745FB002EDA80 /* ZDXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXPageControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +119,22 @@
 		25A48BA41CC72F22002EDA80 /* ZDX_Demo */ = {
 			isa = PBXGroup;
 			children = (
+				25A48BD81CC72F4F002EDA80 /* ZDXMoveView.h */,
+				25A48BD91CC72F4F002EDA80 /* ZDXMoveView.m */,
+				25A48BDB1CC72F57002EDA80 /* ZDXMoveAndScrollView.h */,
+				25A48BDC1CC72F57002EDA80 /* ZDXMoveAndScrollView.m */,
+				25A48BDE1CC72F6C002EDA80 /* ZDXPopupView.h */,
+				25A48BDF1CC72F6C002EDA80 /* ZDXPopupView.m */,
+				25A48BE11CC72F7E002EDA80 /* ZDXLoopScrollView.h */,
+				25A48BE21CC72F7E002EDA80 /* ZDXLoopScrollView.m */,
+				25A48BE71CC745FB002EDA80 /* ZDXPageControl.h */,
+				25A48BE81CC745FB002EDA80 /* ZDXPageControl.m */,
 				25A48BA81CC72F22002EDA80 /* AppDelegate.h */,
 				25A48BA91CC72F22002EDA80 /* AppDelegate.m */,
 				25A48BAB1CC72F22002EDA80 /* ViewController.h */,
 				25A48BAC1CC72F22002EDA80 /* ViewController.m */,
+				25A48BE41CC732AD002EDA80 /* DemoViewController.h */,
+				25A48BE51CC732AD002EDA80 /* DemoViewController.m */,
 				25A48BAE1CC72F22002EDA80 /* Main.storyboard */,
 				25A48BB11CC72F22002EDA80 /* Assets.xcassets */,
 				25A48BB31CC72F22002EDA80 /* LaunchScreen.storyboard */,
@@ -207,6 +237,7 @@
 				TargetAttributes = {
 					25A48BA11CC72F22002EDA80 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = LKE449VVE5;
 					};
 					25A48BBA1CC72F22002EDA80 = {
 						CreatedOnToolsVersion = 7.3;
@@ -270,8 +301,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A48BDA1CC72F4F002EDA80 /* ZDXMoveView.m in Sources */,
 				25A48BAD1CC72F22002EDA80 /* ViewController.m in Sources */,
+				25A48BE01CC72F6C002EDA80 /* ZDXPopupView.m in Sources */,
+				25A48BE61CC732AD002EDA80 /* DemoViewController.m in Sources */,
+				25A48BE31CC72F7E002EDA80 /* ZDXLoopScrollView.m in Sources */,
+				25A48BDD1CC72F57002EDA80 /* ZDXMoveAndScrollView.m in Sources */,
 				25A48BAA1CC72F22002EDA80 /* AppDelegate.m in Sources */,
+				25A48BE91CC745FB002EDA80 /* ZDXPageControl.m in Sources */,
 				25A48BA71CC72F22002EDA80 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,10 +452,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ZDX_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "GF.ZDX-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.groupfly.demo.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -426,10 +466,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ZDX_Demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "GF.ZDX-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.groupfly.demo.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
