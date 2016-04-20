@@ -160,7 +160,7 @@
 
 - (void)test5:(UIButton *)btn {
     NSString *message = [NSString stringWithFormat:@"你点了%@按钮", btn.tag - 1000 ? @"红色" : @"绿色"];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"确定");
     }];
@@ -181,7 +181,7 @@
 
 - (void)loopScrollView:(ZDXLoopScrollView *)loopScrollView didSelectItemAtIndex:(NSInteger)index {
     NSString *message = [NSString stringWithFormat:@"点击了第%ld个", index + 1];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"确定");
     }];
