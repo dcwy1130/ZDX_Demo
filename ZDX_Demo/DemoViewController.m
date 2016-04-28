@@ -26,6 +26,8 @@
 
 @implementation DemoViewController
 
+
+
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];    
@@ -56,6 +58,7 @@
 //    Method originalMethod = class_getInstanceMethod([self class], @selector(test));
 //    Method swizzledMethod = class_getInstanceMethod([self class], selector);
 //    method_exchangeImplementations(originalMethod, swizzledMethod);
+    [self performSelector:@selector(test) withObject:self afterDelay:3.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,8 +72,39 @@
 }
 
 #pragma mark - Test
+// 截屏，带导航栏
 - (void)test {
+    CGSize size = self.navigationController.view.frame.size;
     
+    UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+
+    CGRect rec = self.navigationController.view.frame;
+    [self.navigationController.view drawViewHierarchyInRect:rec afterScreenUpdates:YES];
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    NSData * data = UIImagePNGRepresentation(image);
+
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *filename = [[path objectAtIndex:0] stringByAppendingPathComponent:@"Screen_Image.png"];
+    [data writeToFile:filename atomically:YES];
+    
+//    CGRect rect = self.view.frame;
+//    UIGraphicsBeginImageContext(rect.size);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+////    [view.layer renderInContext:context];
+////    [self.navigationController.view.layer renderInContext:context];
+//    [self.view.window.layer renderInContext:context];
+//    
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    NSData * data = UIImagePNGRepresentation(image);
+//
+//    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *filename = [[path objectAtIndex:0] stringByAppendingPathComponent:@"Screen_Image.png"];
+//    [data writeToFile:filename atomically:YES];
 }
 
 - (void)test1 {

@@ -10,17 +10,43 @@
 #import "DemoViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 
 @end
 
 @implementation ViewController
 {
     NSUInteger tag;
+    NSTimer *timer;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.noticeLabel.text = @"特惠大战，即奖打响！！！即日起，全场满100-20，满100-20，满100-20，满100-20。新用户立减15元！！！";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.02f target:self selector:@selector(updateNotice) userInfo:nil repeats:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if ([timer isValid]) {
+        [timer invalidate];
+        timer = nil;
+    }
+}
+
+- (void)updateNotice {
+    CGRect frame = _noticeLabel.frame;
+    frame.origin.x --;
+    CGFloat textWidth = CGRectGetWidth(self.noticeLabel.frame);
+    if (frame.origin.x == -textWidth) {
+        frame.origin.x = [UIScreen mainScreen].bounds.size.width;
+    }
+    _noticeLabel.frame = frame;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -39,7 +39,7 @@
         [self addSubview:_scrollView];
         
         // 初始化UIPageControl
-        _pageControl = [[ZDXPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.bounds) - 40, CGRectGetWidth(self.bounds), 40)];
+        _pageControl = [[ZDXPageControl alloc] init];
         _pageControl.currentPageIndicatorTintColor = self.currentPageIndicatorTintColor;
         _pageControl.pageIndicatorTintColor = self.pageIndicatorTintColor;
         _pageControl.userInteractionEnabled = NO;
@@ -209,6 +209,27 @@
     if ([_delegate respondsToSelector:@selector(loopScrollView:didSelectItemAtIndex:)]) {
         [_delegate loopScrollView:self didSelectItemAtIndex:_currentPage];
     }
+}
+
+#pragma mark - drawRect
+- (void)drawRect:(CGRect)rect {
+    CGFloat width = [self.pageControl sizeForNumberOfPages:self.totalPage].width;
+    CGRect frame = CGRectMake(0, CGRectGetMaxY(rect) - 30.0f, width, 30.0f);
+    switch (self.mode) {
+        case PageControlModeCenter: {
+            frame.origin.x = CGRectGetWidth(rect) / 2.0f - width;
+            break;
+        }
+        case PageControlModeLeft: {
+            frame.origin.x = 20.0f;
+            break;
+        }
+        case PageControlModeRight: {
+            frame.origin.x = CGRectGetWidth(rect) - width - 20;
+            break;
+        }
+    }
+    self.pageControl.frame = frame;
 }
 
 @end

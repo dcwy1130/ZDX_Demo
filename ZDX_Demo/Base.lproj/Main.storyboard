@@ -18,57 +18,70 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2x-gj-rKd">
-                                <rect key="frame" x="248" y="198" width="105" height="124"/>
+                                <rect key="frame" x="248" y="213" width="105" height="119"/>
                                 <state key="normal" title="移动滚动视图"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jVf-bp-DyD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIX-tP-ZCM">
-                                <rect key="frame" x="248" y="332" width="105" height="124"/>
+                                <rect key="frame" x="248" y="342" width="105" height="119"/>
                                 <state key="normal" title="弹出视图"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OxL-l9-8jz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kru-uw-kct">
-                                <rect key="frame" x="248" y="466" width="105" height="124"/>
+                                <rect key="frame" x="248" y="471" width="105" height="119"/>
                                 <state key="normal" title="广告位滚动视图"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8PI-hX-4ct"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="co0-1O-VoX">
-                                <rect key="frame" x="248" y="64" width="105" height="124"/>
+                                <rect key="frame" x="248" y="84" width="105" height="119"/>
                                 <state key="normal" title="移动视图"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4q0-Qb-OVh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkY-9R-7He">
+                                <rect key="frame" x="600" y="64" width="0.0" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="3bj-RJ-1zL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.25882352939999997" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kru-uw-kct" firstAttribute="width" secondItem="co0-1O-VoX" secondAttribute="width" id="1cV-Rp-DqD"/>
                             <constraint firstItem="n2x-gj-rKd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3ZQ-4y-V3Q"/>
                             <constraint firstItem="RIX-tP-ZCM" firstAttribute="width" secondItem="co0-1O-VoX" secondAttribute="width" id="6vF-dI-xq1"/>
                             <constraint firstItem="kru-uw-kct" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7l0-Lt-DWh"/>
+                            <constraint firstItem="VkY-9R-7He" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="trailing" symbolic="YES" id="8OU-Q9-7NJ"/>
                             <constraint firstItem="n2x-gj-rKd" firstAttribute="width" secondItem="co0-1O-VoX" secondAttribute="width" id="Bc7-DA-QPT"/>
                             <constraint firstItem="n2x-gj-rKd" firstAttribute="height" secondItem="co0-1O-VoX" secondAttribute="height" id="Ihx-xn-zHw"/>
                             <constraint firstItem="kru-uw-kct" firstAttribute="top" secondItem="RIX-tP-ZCM" secondAttribute="bottom" constant="10" id="K9a-xo-QJi"/>
                             <constraint firstItem="RIX-tP-ZCM" firstAttribute="top" secondItem="n2x-gj-rKd" secondAttribute="bottom" constant="10" id="Mh0-g5-c3F"/>
                             <constraint firstItem="co0-1O-VoX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RRI-BL-QAI"/>
-                            <constraint firstItem="co0-1O-VoX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RVY-wr-y0n"/>
                             <constraint firstItem="n2x-gj-rKd" firstAttribute="top" secondItem="co0-1O-VoX" secondAttribute="bottom" constant="10" id="Vyb-SP-BfC"/>
                             <constraint firstItem="kru-uw-kct" firstAttribute="height" secondItem="co0-1O-VoX" secondAttribute="height" id="ZW4-fK-u3r"/>
                             <constraint firstItem="RIX-tP-ZCM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ahN-tL-RbA"/>
+                            <constraint firstItem="co0-1O-VoX" firstAttribute="top" secondItem="VkY-9R-7He" secondAttribute="bottom" id="bBp-gv-vGA"/>
                             <constraint firstItem="kru-uw-kct" firstAttribute="top" secondItem="RIX-tP-ZCM" secondAttribute="bottom" constant="10" id="jZm-F3-6Pu"/>
                             <constraint firstItem="RIX-tP-ZCM" firstAttribute="height" secondItem="co0-1O-VoX" secondAttribute="height" id="k7f-AE-TyS"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kru-uw-kct" secondAttribute="bottom" constant="10" id="pDF-1o-b7W"/>
+                            <constraint firstItem="VkY-9R-7He" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="scR-7q-yP2"/>
                             <constraint firstItem="RIX-tP-ZCM" firstAttribute="top" secondItem="n2x-gj-rKd" secondAttribute="bottom" constant="10" id="yFk-bq-8JX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Demo" id="zxb-kt-KyL"/>
                     <connections>
+                        <outlet property="noticeLabel" destination="VkY-9R-7He" id="eL4-ZV-f68"/>
                         <segue destination="hvT-Cz-9mV" kind="show" identifier="kSeguePush" id="Ro4-QN-buW"/>
                     </connections>
                 </viewController>
@@ -111,7 +124,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FRQ-de-TCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303.75" y="428.87323943661971"/>
+            <point key="canvasLocation" x="354" y="428"/>
         </scene>
     </scenes>
 </document>
