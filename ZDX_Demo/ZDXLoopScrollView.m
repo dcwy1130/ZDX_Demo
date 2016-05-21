@@ -203,6 +203,25 @@
     [self startAutoLoop];
 }
 
+// 代码驱动滚动动画结束代理
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    float x = scrollView.contentOffset.x;
+    float width = CGRectGetWidth(self.bounds);
+    float toX = 0.0f;
+    
+    if (x > 0) {
+        toX = width;
+    } else if (x > width) {
+        toX = width * 2;
+    } else if (x > width * 2) {
+        toX = width * 3;
+    }
+    
+    if (toX > 0.0f) {
+        [_scrollView setContentOffset:CGPointMake(toX, 0)];
+    }
+}
+
 
 #pragma mark - 点击广告事件
 - (void)handleSelectItem:(UIGestureRecognizer *)sender {
