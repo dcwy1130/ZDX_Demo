@@ -146,6 +146,7 @@
 
 - (void)test4 {
     self.loopScrollView = [[ZDXLoopScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
+    self.loopScrollView.mode = PageControlModeRight;
     self.loopScrollView.delegate = self;
     self.loopScrollView.dataSource = self;
     [self.view addSubview:self.loopScrollView];
