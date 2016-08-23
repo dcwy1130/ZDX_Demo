@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, ZDXPopupViewAnimationOptions) {
 /// 数据源协议
 @protocol ZDXPopupViewDataSource <NSObject>
 @required
-- (UIView *)viewForContentInPopupView:(ZDXPopupView *)popupVie;
+- (UIView *)viewForContentInPopupView:(ZDXPopupView *)popupView;
 @end
 
 /// 代理协议

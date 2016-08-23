@@ -31,9 +31,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         basicAnimation = [CABasicAnimation animation];
-        
         keyFrameAnimation = [CAKeyframeAnimation animation];
         keyFrameAnimation.keyPath = @"transform";
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -42,10 +42,6 @@
 - (void)setDataSource:(id<ZDXPopupViewDataSource>)dataSource {
     NSAssert(dataSource, @"代理不能为空");
     _dataSource = dataSource;
-    _contentView = [_dataSource viewForContentInPopupView:self];
-    _contentView.userInteractionEnabled = YES;
-    contentViewCenter = _contentView.center;
-    [self addSubview:_contentView];
 }
 
 #pragma mark - GETTER
@@ -61,35 +57,35 @@
         case ZDXPopupViewAnimationOptionsFadeInOut: {
             keyFrameAnimation.duration = self.duration;
             keyFrameAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
-                                       [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2f, 1.2f, 1.0f)],
-                                       [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.8f, 0.8f, 1.0f)],
-                                       [NSValue valueWithCATransform3D:CATransform3DIdentity]];
+                                         [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2f, 1.2f, 1.0f)],
+                                         [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.8f, 0.8f, 1.0f)],
+                                         [NSValue valueWithCATransform3D:CATransform3DIdentity]];
             keyFrameAnimation.keyTimes = @[@0.2f, @0.5f, @0.75f, @1.0f];
             _showAnimation = keyFrameAnimation;
             break;
         }
         case ZDXPopupViewAnimationOptionsFromLeft: {
             _showAnimation = [self animationWithFromValue:@(-[UIScreen mainScreen].bounds.size.width)
-                                                     toValue:@([UIScreen mainScreen].bounds.size.width)
-                                                     keyPath:@"transform.translation.x"];
+                                                  toValue:@([UIScreen mainScreen].bounds.size.width)
+                                                  keyPath:@"transform.translation.x"];
             break;
         }
         case ZDXPopupViewAnimationOptionsFromRight: {
             _showAnimation = [self animationWithFromValue:@([UIScreen mainScreen].bounds.size.width)
-                                                     toValue:@(-[UIScreen mainScreen].bounds.size.width)
-                                                     keyPath:@"transform.translation.x"];
+                                                  toValue:@(-[UIScreen mainScreen].bounds.size.width)
+                                                  keyPath:@"transform.translation.x"];
             break;
         }
         case ZDXPopupViewAnimationOptionsFromTop: {
             _showAnimation = [self animationWithFromValue:@(-[UIScreen mainScreen].bounds.size.height)
-                                                     toValue:@([UIScreen mainScreen].bounds.size.height)
-                                                     keyPath:@"transform.translation.y"];
+                                                  toValue:@([UIScreen mainScreen].bounds.size.height)
+                                                  keyPath:@"transform.translation.y"];
             break;
         }
         case ZDXPopupViewAnimationOptionsFromBottom: {
             _showAnimation = [self animationWithFromValue:@([UIScreen mainScreen].bounds.size.height)
-                                                     toValue:@(-[UIScreen mainScreen].bounds.size.height)
-                                                     keyPath:@"transform.translation.y"];
+                                                  toValue:@(-[UIScreen mainScreen].bounds.size.height)
+                                                  keyPath:@"transform.translation.y"];
             break;
         }
         case ZDXPopupViewAnimationOptionsScaleFromLeftTop: {
@@ -97,7 +93,7 @@
                                                   toValue:@(1.0)
                                                   keyPath:@"transform.scale"];
             [_contentView.layer setAnchorPoint:CGPointMake(0, 0)];
-//            [_contentView.layer setPosition:CGPointMake(50, 150)];
+            //            [_contentView.layer setPosition:CGPointMake(50, 150)];
             [_contentView.layer setPosition:CGPointMake(contentViewCenter.x - CGRectGetWidth(_contentView.frame) / 2, contentViewCenter.y - CGRectGetHeight(_contentView.frame) / 2)];
             break;
         }
@@ -221,36 +217,46 @@
         }
     }
     basicAnimation.duration = self.duration;
-//    basicAnimation.removedOnCompletion = YES;//yes的话，又返回原位置了。
-//    animation.fillMode = kCAFillModeForwards;
+    //    basicAnimation.removedOnCompletion = YES;//yes的话，又返回原位置了。
+    //    animation.fillMode = kCAFillModeForwards;
     return basicAnimation;
 }
 
 // 展示
 - (void)show {
+    if (_contentView) {
+        [_contentView removeFromSuperview];
+        _contentView = nil;
+    }
+    _contentView = [_dataSource viewForContentInPopupView:self];
+    _contentView.userInteractionEnabled = YES;
+    contentViewCenter = _contentView.center;
+    [self addSubview:_contentView];
+    
     // 初始状况
     [_contentView.layer setAnchorPoint:CGPointMake(0.5, 0.5)];
     [_contentView.layer setPosition:contentViewCenter];
-//    [_contentView.layer setTransform:CATransform3DMakeScale(1.0f, 1.0f, 1.0f)];
-//    [_contentView.layer setContentsScale:1.0];
-    
-    self.alpha = 1.0;
+    [[[[UIApplication sharedApplication].keyWindow subviews] firstObject] addSubview:self];
+    self.alpha = 0.0;
     if ([self.dataSource respondsToSelector:@selector(viewForContentInPopupView:)]) {
-        [[[[UIApplication sharedApplication].keyWindow subviews] firstObject] addSubview:self];
+        [UIView animateWithDuration:self.duration animations:^{
+            self.alpha = 1.0;
+        }];
         [self.contentView.layer addAnimation:self.showAnimation forKey:nil];
     }
 }
 
 // 消失
 - (void)hide {
-    [self.contentView.layer addAnimation:self.dismissAnimation forKey:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self.duration - 0.1) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:ANIMATION_DURATION_HIDE animations:^{
+    if (self.superview) {
+        [self.contentView.layer addAnimation:self.dismissAnimation forKey:nil];
+        [UIView animateWithDuration:self.duration animations:^{
             self.alpha = 0.0;
         } completion:^(BOOL finished) {
+            [self.contentView removeFromSuperview];
             [self removeFromSuperview];
         }];
-    });
+    }
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -260,6 +266,4 @@
         [self hide];
     }
 }
-
-
 @end
