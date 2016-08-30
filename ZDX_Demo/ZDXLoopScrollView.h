@@ -13,7 +13,7 @@
 
 // PageControl 显示位置
 typedef NS_ENUM(NSInteger, PageControlMode) {
-    PageControlModeCenter,
+    PageControlModeCenter = 0,
     PageControlModeLeft,
     PageControlModeRight
 };
@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger, PageControlMode) {
 
 @property (weak, nonatomic) id<ZDXLoopScrollViewDataSource> dataSource;
 @property (weak, nonatomic) id<ZDXLoopScrollViewDelegate> delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame pageControlMode:(PageControlMode)mode;
 
 /** 开始自动循环滚动 */
 - (void)startAutoLoop;

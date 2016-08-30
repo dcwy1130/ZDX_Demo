@@ -55,9 +55,14 @@
         [_scrollView addGestureRecognizer:_tap];
         
         _currentPage = 0;
-        _mode = PageControlModeCenter;
+//        _mode = PageControlModeCenter;
     }
     return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame pageControlMode:(PageControlMode)mode {
+    _mode = mode;
+    return [self initWithFrame:frame];
 }
 
 - (void)setDataSource:(id<ZDXLoopScrollViewDataSource>)dataSource {
