@@ -14,21 +14,21 @@
  */
 
 // 动画效果
-typedef NS_ENUM(NSInteger, ZDXPopupViewAnimationOptions) {
+typedef NS_ENUM(NSInteger, ZDXPopupViewAnimationOption) {
     // 关键帧动画
-    ZDXPopupViewAnimationOptionsFadeInOut = 0,
+    ZDXPopupViewAnimationOptionFadeInOut = 0,
     
     // 移动
-    ZDXPopupViewAnimationOptionsFromLeft,
-    ZDXPopupViewAnimationOptionsFromRight,
-    ZDXPopupViewAnimationOptionsFromTop,
-    ZDXPopupViewAnimationOptionsFromBottom,
+    ZDXPopupViewAnimationOptionFromLeft,
+    ZDXPopupViewAnimationOptionFromRight,
+    ZDXPopupViewAnimationOptionFromTop,
+    ZDXPopupViewAnimationOptionFromBottom,
     
     // 缩放
-    ZDXPopupViewAnimationOptionsScaleFromLeftTop,
-    ZDXPopupViewAnimationOptionsScaleFromRightTop,
-    ZDXPopupViewAnimationOptionsScaleFromLeftBottom,
-    ZDXPopupViewAnimationOptionsScaleFromRightBottom,
+    ZDXPopupViewAnimationOptionScaleFromLeftTop,
+    ZDXPopupViewAnimationOptionScaleFromRightTop,
+    ZDXPopupViewAnimationOptionScaleFromLeftBottom,
+    ZDXPopupViewAnimationOptionScaleFromRightBottom,
 };
 
 @class ZDXPopupView;
@@ -47,13 +47,16 @@ typedef NS_ENUM(NSInteger, ZDXPopupViewAnimationOptions) {
 
 @interface ZDXPopupView : UIView
 
-@property (assign, nonatomic) CGFloat duration;     // 动画持续时间，默认为0.5s
+@property (assign, nonatomic) CGFloat duration;     // 动画持续时间，默认为0.3s
 
 @property (weak, nonatomic) id<ZDXPopupViewDataSource> dataSource;
 @property (weak, nonatomic) id<ZDXPopupViewDelegate> delegate;
 
 /// 动画效果
-@property (assign, nonatomic) ZDXPopupViewAnimationOptions animationOptions;
+@property (assign, nonatomic) ZDXPopupViewAnimationOption animationOption;
+
+// 便捷初始化方法
+- (instancetype)initWithFrame:(CGRect)frame animationOption:(ZDXPopupViewAnimationOption)animationOption;
 
 /**
  *  显示弹出视图

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 ShopNum1. All rights reserved.
 //
 
-#define ANIMATION_DURATION          0.5 // 动画时长
+#define ANIMATION_DURATION          0.3 // 动画时长
 #define ANIMATION_DURATION_HIDE     0.02 // 背景隐藏时长
 
 #import "ZDXPopupView.h"
@@ -38,6 +38,11 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame animationOption:(ZDXPopupViewAnimationOption)animationOption {
+    _animationOption = animationOption;
+    return [self initWithFrame:frame];
+}
+
 #pragma mark - SETTER
 - (void)setDataSource:(id<ZDXPopupViewDataSource>)dataSource {
     NSAssert(dataSource, @"代理不能为空");
@@ -53,8 +58,8 @@
 }
 
 - (CAAnimation *)showAnimation {
-    switch (_animationOptions) {
-        case ZDXPopupViewAnimationOptionsFadeInOut: {
+    switch (_animationOption) {
+        case ZDXPopupViewAnimationOptionFadeInOut: {
             keyFrameAnimation.duration = self.duration;
             keyFrameAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
                                          [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2f, 1.2f, 1.0f)],
@@ -64,31 +69,31 @@
             _showAnimation = keyFrameAnimation;
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromLeft: {
+        case ZDXPopupViewAnimationOptionFromLeft: {
             _showAnimation = [self animationWithFromValue:@(-[UIScreen mainScreen].bounds.size.width)
                                                   toValue:@([UIScreen mainScreen].bounds.size.width)
                                                   keyPath:@"transform.translation.x"];
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromRight: {
+        case ZDXPopupViewAnimationOptionFromRight: {
             _showAnimation = [self animationWithFromValue:@([UIScreen mainScreen].bounds.size.width)
                                                   toValue:@(-[UIScreen mainScreen].bounds.size.width)
                                                   keyPath:@"transform.translation.x"];
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromTop: {
+        case ZDXPopupViewAnimationOptionFromTop: {
             _showAnimation = [self animationWithFromValue:@(-[UIScreen mainScreen].bounds.size.height)
                                                   toValue:@([UIScreen mainScreen].bounds.size.height)
                                                   keyPath:@"transform.translation.y"];
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromBottom: {
+        case ZDXPopupViewAnimationOptionFromBottom: {
             _showAnimation = [self animationWithFromValue:@([UIScreen mainScreen].bounds.size.height)
                                                   toValue:@(-[UIScreen mainScreen].bounds.size.height)
                                                   keyPath:@"transform.translation.y"];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromLeftTop: {
+        case ZDXPopupViewAnimationOptionScaleFromLeftTop: {
             _showAnimation = [self animationWithFromValue:@(0.01)
                                                   toValue:@(1.0)
                                                   keyPath:@"transform.scale"];
@@ -97,7 +102,7 @@
             [_contentView.layer setPosition:CGPointMake(contentViewCenter.x - CGRectGetWidth(_contentView.frame) / 2, contentViewCenter.y - CGRectGetHeight(_contentView.frame) / 2)];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromRightTop: {
+        case ZDXPopupViewAnimationOptionScaleFromRightTop: {
             _showAnimation = [self animationWithFromValue:@(0.01)
                                                   toValue:@(1.0)
                                                   keyPath:@"transform.scale"];
@@ -106,7 +111,7 @@
             [_contentView.layer setPosition:CGPointMake(contentViewCenter.x + CGRectGetWidth(_contentView.frame) / 2, contentViewCenter.y - CGRectGetHeight(_contentView.frame) / 2)];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromLeftBottom: {
+        case ZDXPopupViewAnimationOptionScaleFromLeftBottom: {
             _showAnimation = [self animationWithFromValue:@(0.01)
                                                   toValue:@(1.0)
                                                   keyPath:@"transform.scale"];
@@ -115,7 +120,7 @@
             [_contentView.layer setPosition:CGPointMake(contentViewCenter.x - CGRectGetWidth(_contentView.frame) / 2, contentViewCenter.y + CGRectGetHeight(_contentView.frame) / 2)];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromRightBottom: {
+        case ZDXPopupViewAnimationOptionScaleFromRightBottom: {
             _showAnimation = [self animationWithFromValue:@(0.01)
                                                   toValue:@(1.0)
                                                   keyPath:@"transform.scale"];
@@ -129,8 +134,8 @@
 }
 
 - (CAAnimation *)dismissAnimation {
-    switch (_animationOptions) {
-        case ZDXPopupViewAnimationOptionsFadeInOut: {
+    switch (_animationOption) {
+        case ZDXPopupViewAnimationOptionFadeInOut: {
             keyFrameAnimation.duration = self.duration;
             keyFrameAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.8f, 0.8f, 1.0f)],
                                          [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2f, 1.2f, 1.0f)],
@@ -139,53 +144,53 @@
             _dismissAnimation = keyFrameAnimation;
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromLeft: {
+        case ZDXPopupViewAnimationOptionFromLeft: {
             _dismissAnimation = [self animationWithFromValue:nil
                                                      toValue:@(-[UIScreen mainScreen].bounds.size.width)
                                                      keyPath:@"transform.translation.x"];
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromRight: {
+        case ZDXPopupViewAnimationOptionFromRight: {
             _dismissAnimation = [self animationWithFromValue:nil
                                                      toValue:@([UIScreen mainScreen].bounds.size.width)
                                                      keyPath:@"transform.translation.x"];
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromTop: {
+        case ZDXPopupViewAnimationOptionFromTop: {
             _dismissAnimation = [self animationWithFromValue:nil
                                                      toValue:@(-[UIScreen mainScreen].bounds.size.height)
                                                      keyPath:@"transform.translation.y"];
             
             break;
         }
-        case ZDXPopupViewAnimationOptionsFromBottom: {
+        case ZDXPopupViewAnimationOptionFromBottom: {
             _dismissAnimation = [self animationWithFromValue:nil
                                                      toValue:@([UIScreen mainScreen].bounds.size.height)
                                                      keyPath:@"transform.translation.y"];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromLeftTop: {
+        case ZDXPopupViewAnimationOptionScaleFromLeftTop: {
             _dismissAnimation = [self animationWithFromValue:@(1.0)
                                                      toValue:@(0.01)
                                                      keyPath:@"transform.scale"];
             [_contentView.layer setAnchorPoint:CGPointMake(0, 0)];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromRightTop: {
+        case ZDXPopupViewAnimationOptionScaleFromRightTop: {
             _dismissAnimation = [self animationWithFromValue:@(1.0)
                                                      toValue:@(0.01)
                                                      keyPath:@"transform.scale"];
             [_contentView.layer setAnchorPoint:CGPointMake(1, 0)];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromLeftBottom: {
+        case ZDXPopupViewAnimationOptionScaleFromLeftBottom: {
             _dismissAnimation = [self animationWithFromValue:@(1.0)
                                                      toValue:@(0.01)
                                                      keyPath:@"transform.scale"];
             [_contentView.layer setAnchorPoint:CGPointMake(0, 1)];
             break;
         }
-        case ZDXPopupViewAnimationOptionsScaleFromRightBottom: {
+        case ZDXPopupViewAnimationOptionScaleFromRightBottom: {
             _dismissAnimation = [self animationWithFromValue:@(1.0)
                                                      toValue:@(0.01)
                                                      keyPath:@"transform.scale"];
