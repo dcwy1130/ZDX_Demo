@@ -54,7 +54,7 @@
             selector = @selector(test4);
             break;
     }
-    [self performSelector:selector];
+    // [self performSelector:selector];
 //    Method originalMethod = class_getInstanceMethod([self class], @selector(test));
 //    Method swizzledMethod = class_getInstanceMethod([self class], selector);
 //    method_exchangeImplementations(originalMethod, swizzledMethod);
