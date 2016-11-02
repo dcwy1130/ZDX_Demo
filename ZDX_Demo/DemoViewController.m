@@ -139,7 +139,6 @@
     [self test2];
     self.popView = [[ZDXPopupView alloc] initWithFrame:self.view.bounds animationOption:ZDXPopupViewAnimationOptionFromBottom];
     self.popView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.400];
-
     self.popView.dataSource = self;
 }
 
