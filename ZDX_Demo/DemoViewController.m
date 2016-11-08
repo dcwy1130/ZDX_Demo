@@ -137,7 +137,7 @@
 
 - (void)test3 {
     [self test2];
-    self.popView = [[ZDXPopupView alloc] initWithFrame:self.view.bounds animationOption:ZDXPopupViewAnimationOptionFromBottom];
+    self.popView = [[ZDXPopupView alloc] initWithFrame:self.view.bounds animation:ZDXPopupViewAnimationTranslateFromBottom];
     self.popView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.400];
     self.popView.dataSource = self;
 }
@@ -163,7 +163,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.popView.animationOption = indexPath.row % 9;
+    self.popView.animation = indexPath.row % 9;
     [self.popView show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

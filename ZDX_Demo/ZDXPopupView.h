@@ -14,21 +14,21 @@
  */
 
 // 动画效果
-typedef NS_ENUM(NSInteger, ZDXPopupViewAnimationOption) {
+typedef NS_ENUM(NSInteger, ZDXPopupViewAnimation) {
     // 关键帧动画
-    ZDXPopupViewAnimationOptionFadeInOut = 0,
+    ZDXPopupViewAnimationFadeInOut = 0,
     
     // 移动
-    ZDXPopupViewAnimationOptionFromLeft,
-    ZDXPopupViewAnimationOptionFromRight,
-    ZDXPopupViewAnimationOptionFromTop,
-    ZDXPopupViewAnimationOptionFromBottom,
+    ZDXPopupViewAnimationTranslateFromLeft,
+    ZDXPopupViewAnimationTranslateFromRight,
+    ZDXPopupViewAnimationTranslateFromTop,
+    ZDXPopupViewAnimationTranslateFromBottom,
     
     // 缩放
-    ZDXPopupViewAnimationOptionScaleFromLeftTop,
-    ZDXPopupViewAnimationOptionScaleFromRightTop,
-    ZDXPopupViewAnimationOptionScaleFromLeftBottom,
-    ZDXPopupViewAnimationOptionScaleFromRightBottom,
+    ZDXPopupViewAnimationScaleFromLeftTop,
+    ZDXPopupViewAnimationScaleFromRightTop,
+    ZDXPopupViewAnimationScaleFromLeftBottom,
+    ZDXPopupViewAnimationScaleFromRightBottom,
 };
 
 @class ZDXPopupView;
@@ -53,10 +53,10 @@ typedef NS_ENUM(NSInteger, ZDXPopupViewAnimationOption) {
 @property (weak, nonatomic) id<ZDXPopupViewDelegate> delegate;
 
 /// 动画效果
-@property (assign, nonatomic) ZDXPopupViewAnimationOption animationOption;
+@property (assign, nonatomic) ZDXPopupViewAnimation animation;
 
 // 便捷初始化方法
-- (instancetype)initWithFrame:(CGRect)frame animationOption:(ZDXPopupViewAnimationOption)animationOption;
+- (instancetype)initWithFrame:(CGRect)frame animation:(ZDXPopupViewAnimation)animation;
 
 /**
  *  显示弹出视图
