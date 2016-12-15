@@ -54,11 +54,11 @@
             selector = @selector(test4);
             break;
     }
-    // [self performSelector:selector];
+     [self performSelector:selector];
 //    Method originalMethod = class_getInstanceMethod([self class], @selector(test));
 //    Method swizzledMethod = class_getInstanceMethod([self class], selector);
 //    method_exchangeImplementations(originalMethod, swizzledMethod);
-    [self performSelector:@selector(test) withObject:self afterDelay:3.0];
+    // [self performSelector:@selector(test) withObject:self afterDelay:3.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

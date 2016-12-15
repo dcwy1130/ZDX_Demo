@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, ZDXPopupViewAnimation) {
 @interface ZDXPopupView : UIView
 
 @property (assign, nonatomic) CGFloat duration;     // 动画持续时间，默认为0.3s
+@property (assign, nonatomic, readonly, getter = isShow) BOOL show;
 
 @property (weak, nonatomic) id<ZDXPopupViewDataSource> dataSource;
 @property (weak, nonatomic) id<ZDXPopupViewDelegate> delegate;

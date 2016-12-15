@@ -20,6 +20,8 @@
 
 @end
 
+
+
 @interface ZDXMoveView : UIView
 
 @property (copy, nonatomic) NSArray *buttonsTitle; // 所有按钮标题

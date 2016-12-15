@@ -16,13 +16,14 @@
 @property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) CAAnimation *showAnimation;
 @property (strong, nonatomic) CAAnimation *dismissAnimation;
+@property (readwrite) BOOL show;
 
 @end
 
 @implementation ZDXPopupView
 {
-    CABasicAnimation *basicAnimation;
-    CAKeyframeAnimation *keyFrameAnimation;
+//    CABasicAnimation *basicAnimation;
+//    CAKeyframeAnimation *keyFrameAnimation;
     
     CGPoint contentViewCenter;
 }
@@ -30,9 +31,9 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        basicAnimation = [CABasicAnimation animation];
-        keyFrameAnimation = [CAKeyframeAnimation animation];
-        keyFrameAnimation.keyPath = @"transform";
+//        basicAnimation = [CABasicAnimation animation];
+//        keyFrameAnimation = [CAKeyframeAnimation animation];
+//        keyFrameAnimation.keyPath = @"transform";
         self.clipsToBounds = YES;
     }
     return self;
@@ -45,7 +46,7 @@
 
 #pragma mark - SETTER
 - (void)setDataSource:(id<ZDXPopupViewDataSource>)dataSource {
-    NSAssert(dataSource, @"代理不能为空");
+    NSAssert(dataSource, @"数据源不能为空");
     _dataSource = dataSource;
 }
 
@@ -60,6 +61,8 @@
 - (CAAnimation *)showAnimation {
     switch (_animation) {
         case ZDXPopupViewAnimationFadeInOut: {
+            CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+            keyFrameAnimation.keyPath = @"transform";
             keyFrameAnimation.duration = self.duration;
             keyFrameAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f, 0.01f, 1.0f)],
                                          [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2f, 1.2f, 1.0f)],
@@ -136,6 +139,8 @@
 - (CAAnimation *)dismissAnimation {
     switch (_animation) {
         case ZDXPopupViewAnimationFadeInOut: {
+            CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+            keyFrameAnimation.keyPath = @"transform";
             keyFrameAnimation.duration = self.duration;
             keyFrameAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.8f, 0.8f, 1.0f)],
                                          [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2f, 1.2f, 1.0f)],
@@ -202,7 +207,8 @@
 }
 
 #pragma mark - return CAAnimation
-- (CAAnimation *)animationWithFromValue:(NSNumber *)fromValue toValue:(NSNumber *)toValue keyPath:(NSString *)keyPath{
+- (CAAnimation *)animationWithFromValue:(NSNumber *)fromValue toValue:(NSNumber *)toValue keyPath:(NSString *)keyPath {
+    CABasicAnimation *basicAnimation = [CABasicAnimation animation];
     basicAnimation.keyPath = keyPath;
     
     // 缩放效果value
@@ -248,6 +254,7 @@
             self.alpha = 1.0;
         }];
         [self.contentView.layer addAnimation:self.showAnimation forKey:nil];
+        self.show = YES;
     }
 }
 
@@ -260,6 +267,7 @@
         } completion:^(BOOL finished) {
             [self.contentView removeFromSuperview];
             [self removeFromSuperview];
+            self.show = NO;
         }];
     }
 }
